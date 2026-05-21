@@ -5,16 +5,16 @@ namespace Game.Composition
 	/// <summary>
 	/// Move a spell in direction of velocity
 	/// </summary>
-	public class MoveStraight : MovementEffect
+	public class MoveStraight : MonoBehaviour, ISpellEffect
 	{
 		[SerializeField] private float speed;
 
-		public override void Init(SpellEffectData newData)
+		public void Init(SpellEffectData newData)
 		{
-			data = newData;
+
 		}
 
-		public override void Apply(SpellEffectData data)
+		public void Apply(SpellEffectData data)
 		{
 			transform.position += transform.up * speed * Time.deltaTime;
 		}

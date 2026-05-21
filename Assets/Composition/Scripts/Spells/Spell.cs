@@ -9,17 +9,17 @@ namespace Game.Composition
     {
 		[SerializeField] private float radius;
 
-		private SpellEffect[] spellEffects;
+		private ISpellEffect[] spellEffects;
 		private GameObject owner;
 
 		private void OnEnable()
 		{
-			spellEffects = GetComponents<SpellEffect>();
+			spellEffects = GetComponents<ISpellEffect>();
 		}
 
 		private void Start()
 		{
-			foreach (SpellEffect effect in spellEffects)
+			foreach (ISpellEffect effect in spellEffects)
 			{
 				effect.Init(new SpellEffectData()
 				{
@@ -32,7 +32,7 @@ namespace Game.Composition
 		{
 			HitDetect();
 
-			foreach (SpellEffect effect in spellEffects)
+			foreach (ISpellEffect effect in spellEffects)
 			{
 				effect.Apply(new SpellEffectData()
 				{
@@ -47,7 +47,7 @@ namespace Game.Composition
 			if (hit != null)
 			{
 				bool preserve = false;
-				foreach(SpellEffect effect in spellEffects)
+				foreach(ISpellEffect effect in spellEffects)
 				{
 					SpellEffectData returnedData = effect.OnSpellHit(new SpellEffectData()
 					{

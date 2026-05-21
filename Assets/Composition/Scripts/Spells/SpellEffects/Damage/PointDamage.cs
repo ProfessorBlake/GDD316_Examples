@@ -2,15 +2,15 @@ using UnityEngine;
 
 namespace Game.Composition
 {
-    public class PointDamage : DamageEffect
+    public class PointDamage : MonoBehaviour, ISpellEffect
     {
         [SerializeField] private float damage;
 
-		public override SpellEffectData OnSpellHit(SpellEffectData data)
+		public SpellEffectData OnSpellHit(SpellEffectData data)
 		{
-			if(data.Target.TryGetComponent<Health>(out Health hit))
+			if(data.Target.TryGetComponent<IDamagable>(out IDamagable hit))
 			{
-				//hit.
+				hit.TakeDamage(damage, data);
 			}
 
 			return new SpellEffectData()
