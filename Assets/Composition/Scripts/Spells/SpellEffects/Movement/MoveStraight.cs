@@ -18,5 +18,10 @@ namespace Game.Composition
 		{
 			transform.position += transform.up * speed * Time.deltaTime;
 		}
+
+		public SpellEffectData OnSpellHit(SpellEffectData data)
+		{
+			return SpellEffectData.Empty();
+		}
 	}
 }

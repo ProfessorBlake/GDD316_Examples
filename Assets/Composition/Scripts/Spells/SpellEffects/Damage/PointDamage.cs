@@ -6,6 +6,16 @@ namespace Game.Composition
     {
         [SerializeField] private float damage;
 
+		public void Apply(SpellEffectData data)
+		{
+
+		}
+
+		public void Init(SpellEffectData data)
+		{
+
+		}
+
 		public SpellEffectData OnSpellHit(SpellEffectData data)
 		{
 			if(data.Target.TryGetComponent<IDamagable>(out IDamagable hit))
@@ -13,10 +23,7 @@ namespace Game.Composition
 				hit.TakeDamage(damage, data);
 			}
 
-			return new SpellEffectData()
-			{
-				PreserveSpell = false
-			};
+			return SpellEffectData.Empty();
 		}
     }
 }

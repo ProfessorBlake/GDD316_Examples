@@ -7,6 +7,8 @@ namespace Game.Composition
 {
     public class Spell : MonoBehaviour
     {
+		public Action<SpellEffectData> OnSpellHit;
+
 		[SerializeField] private float radius;
 
 		private ISpellEffect[] spellEffects;
@@ -46,26 +48,7 @@ namespace Game.Composition
 			Collider2D hit = Physics2D.OverlapCircle(transform.position, radius);
 			if (hit != null)
 			{
-				bool preserve = false;
-				foreach(ISpellEffect effect in spellEffects)
-				{
-					SpellEffectData returnedData = effect.OnSpellHit(new SpellEffectData()
-					{
-						SpellInstance = this.gameObject,
-						Target = hit.gameObject,
-						Caster = owner
-					});
-
-					if (returnedData.PreserveSpell)
-					{
-						preserve = true;
-					}
-				}
-
-				if (!preserve)
-				{
-					Destroy(gameObject);
-				}
+				OnSpellHit?.Invoke(new SpellEffectData() { SpellInstance = gameObject }); 
 			}
 		}
 

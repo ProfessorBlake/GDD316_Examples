@@ -9,5 +9,13 @@ namespace Game.Composition
         public GameObject Target;           // Intended target / hit object
         public Vector3 TargetPosition;
         public bool PreserveSpell;          // Prevent spell from beign destroyed
-    }
+
+		public static SpellEffectData Empty()
+		{
+			return new SpellEffectData()
+			{
+				PreserveSpell = false
+			};
+		}
+	}
 }
