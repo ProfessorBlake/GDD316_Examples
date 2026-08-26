@@ -625,7 +625,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0a79962808f0904aa91fa0517dc017f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.Composition.Wand
-  spellPrefab: {fileID: 8004493450835275755, guid: df8dae878f16b074f8c065e4a0e139f7, type: 3}
+  spellPrefab: {fileID: 8004493450835275755, guid: 98a1c35789f76324dba8b2ec10cb8a66, type: 3}
   fireDelay: 0.5
   use: 0
 --- !u!114 &1205332273
@@ -653,6 +653,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.Composition.PlayerWalk
   walkSpeed: 3
+  t: 0
 --- !u!1 &1601867950 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8802920772598961478, guid: 5a4cb778067133547b058d7e29d74353, type: 3}
