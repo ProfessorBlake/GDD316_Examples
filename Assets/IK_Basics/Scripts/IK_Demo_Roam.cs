@@ -13,10 +13,14 @@ namespace Game.IK
 		[SerializeField] private float targetTolerance = 0.1f;
 		[SerializeField] private float waveAmplitude = 1f;
 		[SerializeField] private float waveFrequency = 1f;
+		[SerializeField] private Transform leftEye;
+		[SerializeField] private Transform rightEye;
 
 		private float totalLength;
 		private LineRenderer lineRenderer;
 		Vector3[] positions;
+		private float blinkScaleMax;
+		private float blinkScale;
 
 		[System.Serializable]
 		public class ChainSegment
@@ -34,6 +38,7 @@ namespace Game.IK
 		{
 			SetupChain();
 			positions = new Vector3[chains.Length];
+			blinkScaleMax = leftEye.localScale.x;
 		}
 
 		private void SetupChain()
@@ -61,6 +66,26 @@ namespace Game.IK
 				positions[i] = chains[i].Origin;
 			}
 			lineRenderer.SetPositions(positions);
+
+			if(blinkScale < blinkScaleMax)
+			{
+				blinkScale = Mathf.Lerp(blinkScale, blinkScaleMax,10 * Time.deltaTime);
+				if(blinkScaleMax - blinkScale < 0.01f)
+					blinkScale = blinkScaleMax;
+			}
+			else
+			{
+				if (Random.value > 0.999f)
+					blinkScale = 0f;
+			}
+
+			Vector2 dir = (positions[positions.Length - 1] - positions[positions.Length - 2]).normalized;
+			leftEye.position = positions[positions.Length - 1] + new Vector3(-dir.y, dir.x) * 0.2f;
+			leftEye.right = dir;
+			leftEye.localScale = new Vector3(blinkScale, blinkScaleMax, 1f);
+			rightEye.position = positions[positions.Length - 1] + new Vector3(dir.y, -dir.x) * 0.2f;
+			rightEye.right = dir;
+			rightEye.localScale = new Vector3(blinkScale, blinkScaleMax, 1f);
 		}
 
 		private void UpdateIKSolution()
