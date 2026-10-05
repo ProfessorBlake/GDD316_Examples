@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e85ab050016fdc94e99e09a33dbcdc52, type: 3}
+  m_Name: Achievement_TimeTo100
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Programming.AchievementData
+  criteria:
+  - {fileID: 11400000, guid: d32c5a51f54edf442bc39973ba83368b, type: 2}
+  - {fileID: 11400000, guid: 87a8661a06bffe34184aa9955aa8ed89, type: 2}
+  title: That was quick!
+  description: Reach 100m in under 30 seconds
+  image: {fileID: 21300000, guid: da6771f94fe19844a93207d0b8e98605, type: 3}
